@@ -4,8 +4,12 @@ from flask import Flask, render_template, request, session, redirect
 #from flask_socketio import join_room, leave_room, send, SocketIO
 import random
 from string import ascii_uppercase
+import os
 
-app=Flask(__name__)
+basedir = os.path.abspath(os.path.dirname(__file__))
+templates_dir = os.path.join(basedir, '../../frontend/templates')
+
+app=Flask(__name__, template_folder=templates_dir)
 app.config["SECRET_KEY"] =  "testing"
 #socketio = SocketIO(app)
 
