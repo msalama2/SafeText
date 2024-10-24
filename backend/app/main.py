@@ -8,8 +8,9 @@ import os
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 templates_dir = os.path.join(basedir, '../../frontend/templates')
+static_dir = os.path.join(basedir, '../../frontend/static')
 
-app=Flask(__name__, template_folder=templates_dir)
+app=Flask(__name__, template_folder=templates_dir, static_folder=static_dir)
 app.config["SECRET_KEY"] =  "testing"
 #socketio = SocketIO(app)
 
