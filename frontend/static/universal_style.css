@@ -17,7 +17,7 @@ body {
 /* Header and Footer */
 .header, .footer {
     background-color: #3498db;
-    color: #fff;
+    color: white;
     padding: 20px;
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -26,6 +26,8 @@ body {
 .header h1 {
     font-size: 2.2rem;
     margin-bottom: 8px;
+    position: relative;
+
 }
 
 .header p {
@@ -50,8 +52,12 @@ body {
 }
 
 /* Section Headings */
-h1, h2, h3 {
-    color: #3498db;
+h1 {
+    color: white;
+}
+
+h2, h3{
+    color:  #3498db;
 }
 
 .section {
@@ -163,4 +169,46 @@ h1, h2, h3 {
 .muted {
     font-size: 10px;
     color: darkgray;
+}
+
+/* Outer Box Styling */
+.form-container {
+    margin: 50px auto; /* Center the box vertically and horizontally */
+    width: 100%;
+    max-width: 500px; /* Limit the width */
+    padding: 30px;
+    background-color: #ffffff;
+    border: 2px solid #3498db;
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+    text-align: center; /* Center-align the content */
+}
+
+/* Form Inputs */
+.form-group {
+    margin-bottom: 20px;
+    text-align: left; /* Align labels to the left */
+}
+
+.form-label {
+    font-weight: bold;
+    margin-bottom: 8px;
+    display: block;
+    color: #333;
+}
+
+.form-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-input:focus {
+    border-color: #3498db;
+    outline: none;
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
 }
