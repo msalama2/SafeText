@@ -21,7 +21,7 @@ Before running the application, ensure that you have the following installed:
 1. **Clone the repository:**
 
    ```bash
-   git clone -b BeginningOfCode https://github.com/msalama2/Computer-Networks-2470-Project.git
+   git clone https://github.com/msalama2/Computer-Networks-2470-Project.git
    ```
 
 2. **Navigate to the project directory:**
