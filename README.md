@@ -21,7 +21,7 @@ Before running the application, ensure that you have the following installed:
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/mariousy/SafeText.git
+   git clone https://github.com/msalama2/SafeText.git
    ```
 
 2. **Navigate to the project directory:**
