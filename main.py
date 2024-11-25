@@ -127,10 +127,13 @@ def disconnect():
         rooms[room]["members"] -= 1
         if rooms[room]["members"] <= 0:
             del rooms[room] # delete room and its code if empty
-    send({"name": name, "message": "Has entered left room"}, to=room)
+    send({"name": name, "message": "Has left the room"}, to=room)
     print(f"{name} has left the room {room}") #for debugging: seeing if user joins correctly
 
 
 
+import os
+
 if __name__ == "__main__":
-    socketio.run(app, debug=True, allow_unsafe_werkzeug=True, port=8000)
+    port = int(os.environ.get("PORT", 10000))
+    socketio.run(app, host="0.0.0.0", port=port)
