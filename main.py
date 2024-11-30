@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, session, redirect, url_for
+import socket
 from flask_socketio import SocketIO
 from flask_socketio import join_room, leave_room, send, SocketIO
 import random
@@ -6,12 +7,19 @@ from string import ascii_uppercase
 import os
 
 basedir = os.path.abspath(os.path.dirname(__file__))
-templates_dir = os.path.join(basedir, 'templates')
-static_dir = os.path.join(basedir, 'static')
+templates_dir = os.path.join(basedir, './templates')
+static_dir = os.path.join(basedir, './static')
 
 app=Flask(__name__, template_folder=templates_dir, static_folder=static_dir)
 app.config["SECRET_KEY"] =  "testing"
 socketio = SocketIO(app)
+
+#socketIO "listens" for actions (mainly sending/receiving messages)
+# from user, javascript "data" is created (the message)
+# data from JS is then sent to the app server
+# server then checks our functionality to see what action to perform (updates the template of each user in room)
+
+#app gives html pages certain socket/http capabilities, such as POST or GET
 
 rooms = {} #keep track of used room nums
 
@@ -52,6 +60,7 @@ def join_room_page():
         # Store room and name in the session
         session["room"] = code
         session["name"] = name
+
         return redirect(url_for("room"))
 
     return render_template("joinroom.html")
@@ -99,7 +108,7 @@ def message(data):
     }
 
     send(content, to=room)
-    rooms[room]["messages"].append(content)
+    rooms[room]["messages"].append(data["data"])
     print(f"{session.get('name')} said: {data['data']}")
 
 @socketio.on("connect")
@@ -116,6 +125,8 @@ def connect(auth):
     send({"name": name, "message": "Has entered the room"}, to=room)
     rooms[room]["members"] += 1 #keep track of members currently in room
     print(f"{name} has joined the room {room}") #for debugging: seeing if user joins correctly
+    userIP = request.remote_addr  # Get the user's IP address
+    print(f"User {name} IP: " + userIP)
 
 @socketio.on("disconnect")
 def disconnect():
@@ -127,12 +138,12 @@ def disconnect():
         rooms[room]["members"] -= 1
         if rooms[room]["members"] <= 0:
             del rooms[room] # delete room and its code if empty
-    send({"name": name, "message": "Has left the room"}, to=room)
+    send({"name": name, "message": "Has entered left room"}, to=room)
     print(f"{name} has left the room {room}") #for debugging: seeing if user joins correctly
 
 
 
-import os
-
 if __name__ == "__main__":
-    socketio.run(app, debug=True, allow_unsafe_werkzeug=True, port=8000)
+    server_ip = socket.gethostbyname(socket.gethostname())
+    print(f"Server is running on IP: {server_ip}")
+    socketio.run(app, debug=True, allow_unsafe_werkzeug=True, port=8001)

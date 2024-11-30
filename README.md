@@ -64,7 +64,7 @@ Before running the application, ensure that you have the following installed:
    Open your browser and go to:
 
    ```
-   http://127.0.0.1:5000/
+   http://127.0.0.1:8001/
    ```
 
 3. **Create or Join a Chat Room:**
@@ -84,7 +84,7 @@ Before running the application, ensure that you have the following installed:
 ## Notes
 
 - The app uses `SocketIO` for real-time communication between clients and the server.
-- The server runs on `localhost` at port `5000` by default.
+- The server runs on `localhost` at port `8001` by default.
 - You can modify the port or other configurations inside `main.py`.
 
 ## Troubleshooting
